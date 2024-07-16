@@ -11,6 +11,7 @@ import { AxiosClient } from "@/services"
 import useSWR from "swr"
 import { useContext } from "react"
 import { GlobalContext } from "@/contexts"
+import { useManagementModal, useUpdateProductModal } from "@/hooks/useProduct"
 
 const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
@@ -23,30 +24,25 @@ const MPContent: React.FC<ManagePostData> = ({
     availableSlot,
     postImgUrl,
     status,
-    isDelete
+    isDelete,
+    userName
 }) => {
-    const roomByRoleModal = useRoomByProductModal()
-    const { data: listRoom } = useSWR<ListRoom>(postId ? `/api/posts/${postId}/chat_rooms` : null, fetcher)
-    const { setRoomId } = useContext(GlobalContext) || {}
-    const boostProductModal = useBoostProductModal()
+    const managementModal = useManagementModal()
     const adminDeletePostModal = useAdminDeletePostModal()
+    const updateProductModal = useUpdateProductModal()
     const router = useRouter()
 
-    let date: string | undefined;
-    let rangeTime: string | undefined;
-    let startTime: string | undefined;
-    let endTime: string | undefined;
+    // let date: string | undefined;
+    // let rangeTime: string | undefined;
+    // let startTime: string | undefined;
+    // let endTime: string | undefined;
 
-    if (time) {
-        [date, rangeTime] = time.split(": ")
-        if (rangeTime) {
-            [startTime, endTime] = rangeTime.split(" - ")
-        }
-    }
-
-    const checkDisable = (isDelete === false || isDelete === true || !isDelete) && (status === false || !status)
-
-    console.log(checkDisable)
+    // if (time) {
+    //     [date, rangeTime] = time.split(": ")
+    //     if (rangeTime) {
+    //         [startTime, endTime] = rangeTime.split(" - ")
+    //     }
+    // }
 
     return (
         <div className="lg:grid lg:grid-cols-4 flex flex-col gap-3 transition-all duration-500" key={postId}>
@@ -88,15 +84,15 @@ const MPContent: React.FC<ManagePostData> = ({
                                 Thời gian:
                             </label>
                             <p>
-                                <FormatTime timeString={startTime ?? "00:00"} /> - <FormatTime timeString={endTime ?? "00:00"} />
+                                {time}
                             </p>
                         </section>
                         <section className="space-x-1 gap-1">
                             <label className="text-gray-500 font-semibold">
-                                Ngày bắt đầu:
+                                Người quản lý:
                             </label>
                             <span>
-                                {date ? formatDateFunc(date) : "Chưa có"}
+                                {userName}
                             </span>
                         </section>
                         <section className="flex space-x-1">
@@ -138,35 +134,6 @@ const MPContent: React.FC<ManagePostData> = ({
                         </div>
                     </div>
                     <div className="relative w-full grid grid-cols-2 gap-3 md:gap-0 md:flex md:space-x-3 lg:flex-col lg:gap-3 lg:space-x-0 ">
-                        {listRoom && listRoom.data.length > 1 ? (
-                            <div className="relative w-full col-span-1">
-                                <Button
-                                    title="Nhắn tin"
-                                    style="w-full justify-center items-center px-2"
-                                    icon={<RiMessage3Line size={20} />}
-                                    onClick={() => {
-                                        if (postId)
-                                            roomByRoleModal.onOpen(listRoom.data)
-                                    }}
-                                    disabled={checkDisable}
-                                />
-                            </div>
-                        ) : (
-                            listRoom && listRoom.data.map((item) => (
-                                <div className="relative w-full col-span-1" key={item.id}>
-                                    <Button
-                                        title="Nhắn tin"
-                                        style="w-full justify-center items-center px-2"
-                                        icon={<RiMessage3Line size={20} />}
-                                        onClick={() => {
-                                            if (setRoomId) setRoomId(item.id)
-                                            router.push("/user/chat-room")
-                                        }}
-                                        disabled={checkDisable}
-                                    />
-                                </div>
-                            ))
-                        )}
                         <div className="relative w-full col-span-1">
                             <Button
                                 title="Xoá bài đăng"
@@ -175,18 +142,28 @@ const MPContent: React.FC<ManagePostData> = ({
                                     if (postId)
                                         adminDeletePostModal.onOpen(postId, null)
                                 }}
-                                disabled={isDelete === true}
                             />
                         </div>
                         <div className="relative w-full col-span-1">
                             <Button
-                                title="Đẩy bài đăng"
+                                title="Cập nhật bài đăng"
+                                style="w-full justify-center items-center px-2"
+                                onClick={() => {
+                                    if (postId) {
+                                        updateProductModal.onOpen(postId)
+                                    }
+                                }}
+
+                            />
+                        </div>
+                        <div className="relative w-full col-span-1">
+                            <Button
+                                title="Quản lý trạng thái"
                                 style="w-full justify-center items-center px-2"
                                 onClick={() => {
                                     if (postId)
-                                        boostProductModal.onOpen(postId)
+                                        managementModal.onOpen(postId)
                                 }}
-                                disabled={checkDisable}
                             />
                         </div>
                         <div className="relative w-full col-span-1">

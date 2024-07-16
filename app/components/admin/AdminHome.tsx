@@ -42,7 +42,7 @@ const listTitleSetting = [
     { settingName: SettingNames.CancelHour, label: "Thời gian hủy bài (giờ)" },
 ]
 
-const exportToExcel = (listItem: HistoryTransactionData[]) => {// Tai du lieu giao dich ve excel
+const exportToExcel = (listItem: HistoryTransactionData[]) => {
     const headers = listTitleHistoryWallet.slice(1, 5).map(item => item.title)
 
     const data = listItem.map(item => [
@@ -136,7 +136,7 @@ const AdminHome = () => {
     const { data: listHistoryWallet, error, isLoading: loadingHistory } = useSWR<HistoryTransaction>(user ? `/api/wallet/user/${user.id}/history` : null, fetcher, { refreshInterval: 10000 })
     const { data: listSetting, mutate } = useSWR<AdminSetting>(`/api/Settings/get_listSetting`, fetcher, { refreshInterval: 10000 })
     const { data: userWallet, isLoading: loadingWallet } = useSWR<WalletUserData>(user ? `/api/wallet/${user.id}/user_wallet` : null, fetcher, { refreshInterval: 5000 })
-    const { data: listIncoming, isLoading: loadingIncoming } = useSWR<ManagementReport>(dateRange.endDate && dateRange.startDate ? `/api/reports/${encodeURIComponent(dateRange.startDate)}&${encodeURIComponent(dateRange.endDate)}/report_income_Month` : null, fetcher, { refreshInterval: 10000 })
+    const { data: listIncoming, isLoading: loadingIncoming } = useSWR<ManagementReport>(dateRange.endDate && dateRange.startDate ? `/api/users/${encodeURIComponent(dateRange.startDate)}&${encodeURIComponent(dateRange.endDate)}/report_income_Month` : null, fetcher, { refreshInterval: 10000 })
     const { data: listUser, isLoading: loadingUser } = useSWR<ManageUser>(user ? `/api/users/managed/${user.id}` : null, fetcher, { refreshInterval: 10000 })
     const { data: listProduct, isLoading: loadingProduct } = useSWR<ListProduct>(`/api/posts/GetListPost`, fetcher, { refreshInterval: 10000 })
     const { data: listRequest, isLoading: loadingRequest, mutate: reLoadRequest } = useSWR<ListRequestWithdraw>(`/api/transactions/withdraw_request`, fetcher, { refreshInterval: 10000 })
@@ -418,196 +418,7 @@ const AdminHome = () => {
                     </div>
                 </div>
             </div>
-            <div className="
-                    flex 
-                    flex-col 
-                    text-gray-600 
-                    gap-5
-                    md:flex-row 
-                    md:justify-between 
-                    md:items-center 
-                    md:gap-0
-                "
-            >
-                <h1 className="font-semibold md:text-3xl text-2xl flex-shrink-0">
-                    Các khoản tiền
-                </h1>
-            </div>
-            <form className="md:grid md:grid-cols-2 flex flex-col gap-3 transition-all duration-500" onSubmit={handleSubmit(onSubmit)}>
-                {listSetting && listSetting.data.map((item) => {
-                    const title = listTitleSetting.find(title => title.settingName === item.settingName)
-
-                    return (
-                        <div className="col-span-1 flex flex-col gap-3" key={item.settingId} >
-                            <label className="text-gray-600 text-xl font-semibold">
-                                {title?.label}
-                            </label>
-                            <Input
-                                type="number"
-                                isMoney={title?.isMoney}
-                                name={item.settingName}
-                                id={item.settingName}
-                                register={register}
-                                defaultValue={item.settingAmount}
-                                disabled={disable}
-                            />
-                        </div>
-                    )
-                })}
-                <div className=" col-span-2 flex flex-row justify-end gap-3 relative py-3">
-                    {disable ? (
-                        <div className="relative">
-                            <Button
-                                title="Chỉnh sửa"
-                                style="px-5 text-xl"
-                                onClick={(event: any) => {
-                                    event.preventDefault()
-                                    setDisable(!disable)
-                                }}
-                            />
-                        </div>
-                    ) : (
-                        isLoadingModal ? (
-                            <div className="relative">
-                                <Button
-                                    title={<Loading loading={isLoadingModal} color="white" />}
-                                    style="px-12 text-xl"
-                                    isHover={false}
-                                />
-                            </div>
-                        ) : (
-                            <div className="relative">
-                                <Button
-                                    title="Lưu"
-                                    style="px-12 text-xl"
-                                    type="submit"
-                                />
-                            </div>
-                        )
-                    )}
-                </div>
-            </form >
-            <div className="
-                    flex 
-                    flex-col 
-                    text-gray-600 
-                    gap-5
-                    md:flex-row 
-                    md:justify-between 
-                    md:items-center 
-                    md:gap-0
-                "
-            >
-                <h1 className="font-semibold md:text-3xl text-2xl flex-shrink-0">
-                    Xử lý rút tiền
-                </h1>
-            </div>
-            <div className="flex flex-col gap-3">
-                {loadingRequest ? (
-                    <div className="h-96 flex items-center justify-center">
-                        <LoadingFullScreen loading={loadingRequest} />
-                    </div>
-                ) : !listRequest || listRequest.data.length === 0 ? (
-                    <div className="flex items-center justify-center md:text-4xl text-3xl text-primary-blue-cus font-semibold h-96">
-                        Không có yêu cầu chuyển tiền nào cả!
-                    </div>
-                ) : listRequest?.data.slice(0, displayCount).map((item) => (
-                    <div className="grid grid-cols-12 gap-3 border border-black border-opacity-25 rounded-lg p-4 justify-between flex-wrap transition-all duration-500" key={item.id}>
-                        <section className="xl:col-span-7 sm:col-span-9 col-span-12 flex flex-col gap-3">
-                            <h1 className="text-primary-blue-cus md:text-2xl text-xl font-semibold transition-all duration-500">Yêu cầu rút tiền từ người dùng có id: {item.idUser}</h1>
-                            <div className="flex gap-3 flex-wrap">
-                                <div className="space-x-1">
-                                    <span className="text-lg font-semibold text-gray-500">
-                                        Ngân hàng:
-                                    </span>
-                                    <span className="text-lg font-semibold text-gray-600">
-                                        {item.bankName}
-                                    </span>
-                                </div>
-                                <div className="space-x-1">
-                                    <span className="text-lg font-semibold text-gray-500">
-                                        Số tài khoản:
-                                    </span>
-                                    <span className="text-lg font-semibold text-gray-600">
-                                        {item.bankNumber}
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="flex gap-3 flex-wrap">
-                                <div className="space-x-1">
-                                    <span className="text-lg font-semibold text-gray-500">
-                                        Tên chủ thẻ:
-                                    </span>
-                                    <span className="text-lg font-semibold text-gray-600">
-                                        {item.accountName}
-                                    </span>
-                                </div>
-                                <div className="space-x-1">
-                                    <span className="text-lg font-semibold text-gray-500">
-                                        Yêu cầu được gửi:
-                                    </span>
-                                    <span className="text-lg font-semibold text-gray-600">
-                                        {item.createDate}
-                                    </span>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="sm:col-span-3 col-span-12 flex flex-col gap-2">
-                            <div className="flex flex-wrap gap-1">
-                                <span className="text-lg font-semibold text-gray-500">
-                                    Số tiền rút:
-                                </span>
-                                <span className="md:text-2xl text-xl font-semibold text-primary-blue-cus whitespace-nowrap">
-                                    {formatMoney(new Decimal(item.money))}
-                                </span>
-                            </div>
-                            <div className="flex flex-wrap gap-1">
-                                <span className="text-lg font-semibold text-gray-500">
-                                    Trạng thái:
-                                </span>
-                                <span className="text-lg font-semibold">
-                                    {item.status === 1 ? (
-                                        <span className="text-blue-600">
-                                            Đang xử lý
-                                        </span>
-                                    ) : item.status === 0 ? (
-                                        <span className="text-green-600">
-                                            Đã xử lý
-                                        </span>
-                                    ) : (
-                                        <span className="text-red-600">
-                                            Từ chối
-                                        </span>
-                                    )}
-                                </span>
-                            </div>
-                        </section>
-                        <section className="xl:col-span-2 col-span-12 flex xl:flex-col gap-2 xl:justify-center xl:items-center">
-                            {item.status === 1 && (
-                                <>
-                                    <Button
-                                        title="Đồng ý"
-                                        onClick={() => handleAcceptRequest(item.id)}
-                                    />
-                                    <Button
-                                        title="Từ chối"
-                                        onClick={() => handleDeniedRequest(item.id)}
-                                    />
-                                </>
-                            )}
-                        </section>
-                    </div>
-                ))}
-                {listRequest?.data && listRequest?.data.length > displayCount && (
-                    <div className="flex w-full justify-end">
-                        <Button
-                            title="Hiển thị thêm"
-                            onClick={() => handleShowMore()}
-                            style="text-xl px-6"
-                        />
-                    </div>
-                )}
-            </div>
+                     
             <div className="
                     flex 
                     flex-col 
@@ -621,7 +432,7 @@ const AdminHome = () => {
                 "
             >
                 <h1 className="font-semibold md:text-3xl text-2xl flex-shrink-0">
-                    Quản lý ví
+                    Quản lý danh thu
                 </h1>
                 <div className="flex gap-3 flex-col md:flex-row justify-end flex-wrap transition-all duration-500">
                     <DownMetalBtn onClick={() => {

@@ -1,12 +1,12 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:react-hooks/recommended",
-    "plugin:eslint-plugin-import/recommended"
-  ],
-  "plugins": ["import"],
-  "rules": {
-    "no-console": "off"
-  }
+  // "parser": "@typescript-eslint/parser",
+  // "extends": [
+  //   "next/core-web-vitals",
+  //   "plugin:react-hooks/recommended",
+  //   "plugin:eslint-plugin-import/recommended"
+  // ],
+  // "plugins": ["import"],
+  // "rules": {
+  //   "no-console": "off"
+  // }
 }

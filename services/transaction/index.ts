@@ -23,12 +23,13 @@ export const bookingService = async (data: CheckSlotFormData) => {
 }
 
 export const buySlotService = async (data: BuySlotFormData) => {
-    //console.log(data)
+    console.log(data)
 
     try {
         const response = await AxiosClient.post(`/api/transactions/buy_slot`, {
-            idUser: Number(data.idUser),
-            idSlot: data.idSlot,
+            idPost: Number(data.idPost),
+            idUser: data.idUser,
+            postSlot: data.postSlot,
         })
 
         return response.data

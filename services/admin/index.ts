@@ -12,7 +12,7 @@ export const adminBanUserService = async ({ admin_id, user_id }: { admin_id: str
             return error.response.data
         }
     }
-}//Delete Post Service
+}
 
 export const adminDeletePostService = async ({ admin_id, post_id }: { admin_id: string, post_id: string }) => {
     try {

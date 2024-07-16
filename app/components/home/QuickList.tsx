@@ -86,7 +86,7 @@ const QuickList = () => {
                             duration-500
                         "
                         >
-                            Các sân gần đây
+                            Danh Sách Sân
                         </div>
                         <div className="
                             w-1/3 
@@ -115,7 +115,7 @@ const QuickList = () => {
                     <>
                         <div className="
                                 grid
-                                xl:grid-cols-4
+                                xl:grid-cols-5
                                 lg:grid-cols-3
                                 md:grid-cols-2
                                 grid-cols-1

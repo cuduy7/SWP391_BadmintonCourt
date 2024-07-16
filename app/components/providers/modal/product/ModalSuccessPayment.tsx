@@ -5,10 +5,13 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import CustomModal from "../Modal"
 import { Button } from "../../form"
+import { useContext } from "react"
+import { GlobalContext } from "@/contexts"
 
 const ModalSuccessPayment = () => {
     const router = useRouter()
     const successPaymentModal = useSuccessPaymentModal()
+    const { setIsRefresh } = useContext(GlobalContext) || {}
 
     const handleBackHome = () => {
         router.push("/")
@@ -23,7 +26,10 @@ const ModalSuccessPayment = () => {
     return (
         <CustomModal
             isOpen={successPaymentModal.isOpen}
-            onClose={successPaymentModal.onClose}
+            onClose={() => {
+                successPaymentModal.onClose
+                if (setIsRefresh) setIsRefresh(true)
+            }}
             width="md:w-auto w-full"
             height="h-auto"
         >
@@ -35,8 +41,8 @@ const ModalSuccessPayment = () => {
                     width={200}
                     className="object-cover w-24 h-24"
                 />
-                <label className="text-gray-600 font-semibold text-3xl truncate">Thanh toán thành công</label>
-                <p className="text-gray-500 font-normal text-base px-5">Vui lòng xem lại các thanh toán của bạn hoặc có bất kì thắc mắc, vui lòng liên hệ bộ phận hỗ trợ của chúng tôi để được giải đáp sớm nhất.</p>
+                <label className="text-gray-600 font-semibold text-3xl truncate">Đặt sân thành công</label>
+                <p className="text-gray-500 font-normal text-base px-5">Vui lòng xem lại các đặt sân của bạn hoặc có bất kì thắc mắc, vui lòng liên hệ bộ phận hỗ trợ của chúng tôi để được giải đáp sớm nhất.</p>
                 <div className="flex flex-row gap-5">
                     <Button
                         title="Xem chi tiết"

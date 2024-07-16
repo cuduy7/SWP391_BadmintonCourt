@@ -21,7 +21,10 @@ const TransactionItems = () => {
 
     const [currentPage, setCurrentPage] = useState(0)
     const itemsPerPage = 10
-    const pageCount = Math.ceil(listItem ? listItem.data.length / itemsPerPage : 0)
+
+    // const filteredListItem = listItem ? listItem.data.filter(item => item.status.trim().toLowerCase() !== "đã hủy !".trim()) : [];
+    
+    const pageCount = Math.ceil(listItem ? (listItem.data.length / itemsPerPage):0)
 
     const handlePageChange = (selectedPage: { selected: number }) => {
         setCurrentPage(selectedPage.selected)
@@ -29,7 +32,7 @@ const TransactionItems = () => {
 
     const startIndex = currentPage * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    const visibleItems = listItem && listItem.data.length > 0 ? listItem.data.slice(startIndex, endIndex) : []
+    const visibleItems = listItem ? listItem.data.slice(startIndex, endIndex) :[]
 
     return (
         <>

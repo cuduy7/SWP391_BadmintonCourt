@@ -125,13 +125,13 @@ const TableReport: React.FC<TableReportProps> = ({ listItem, currentPage, itemsP
 const ReportManagement = () => {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const [dateRange, setDateRange] = useState({
-        startDate: format(startOfMonth(new Date()), 'MM/dd/yyyy'),
-        endDate: format(endOfMonth(new Date()), 'MM/dd/yyyy')
+        startDate: format(startOfMonth(new Date()), 'dd/MM/yyyy'),
+        endDate: format(endOfMonth(new Date()), 'dd/MM/yyyy')
     })
 
     const { user } = useContext(GlobalContext) || {}
 
-    const { data: listIncoming, error, isLoading } = useSWR<ManagementReport>(dateRange.endDate && dateRange.startDate ? `/api/reports/${encodeURIComponent(dateRange.startDate)}&${encodeURIComponent(dateRange.endDate)}/report_income_Month` : null, fetcher, { refreshInterval: 10000 })
+    const { data: listIncoming, error, isLoading } = useSWR<ManagementReport>(dateRange.endDate && dateRange.startDate ? `/api/users/${encodeURIComponent(dateRange.startDate)}&${encodeURIComponent(dateRange.endDate)}/report_income_Month` : null, fetcher, { refreshInterval: 10000 })
 
     const filteredIncoming = listIncoming && listIncoming.data && listIncoming.data.historyWalletModels.filter(item => item.time && removeVietnameseTones(item.time).includes(removeVietnameseTones(searchTerm)))
     const total = listIncoming?.data ? listIncoming.data.total : 0
@@ -231,8 +231,8 @@ const ReportManagement = () => {
                         if (startDate instanceof Date && !isNaN(startDate.getTime()) &&
                             endDate instanceof Date && !isNaN(endDate.getTime())) {
                             setDateRange({
-                                startDate: format(startDate, 'MM/dd/yyyy'),
-                                endDate: format(endDate, 'MM/dd/yyyy')
+                                startDate: format(startDate, 'dd/MM/yyyy'),
+                                endDate: format(endDate, 'dd/MM/yyyy')
                             })
                         } else {
                             console.error('Invalid date');

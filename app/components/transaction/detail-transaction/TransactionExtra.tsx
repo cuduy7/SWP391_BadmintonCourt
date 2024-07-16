@@ -29,13 +29,13 @@ const TransactionExtra: React.FC<TransactionPaymentDetailData> = ({
             </div> */}
             <div className="flex flex-col gap-5 rounded-lg bg-[#F5F5F5] p-6 text-gray-600">
                 <label className="text-2xl font-semibold ">
-                    Số tiền đã thanh toán
+                    Số tiền cần thanh toán
                 </label>
                 <div className="text-3xl font-semibold">
                     {formatMoney(new Decimal(total ?? 0))}
                 </div>
             </div>
-            <div className="flex flex-col gap-5 rounded-lg bg-[#F5F5F5] p-6 text-gray-600">
+            {/* <div className="flex flex-col gap-5 rounded-lg bg-[#F5F5F5] p-6 text-gray-600">
                 <label className="text-2xl font-semibold ">
                     Phương thức đã thanh toán
                 </label>
@@ -58,7 +58,7 @@ const TransactionExtra: React.FC<TransactionPaymentDetailData> = ({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="relative flex justify-center">
                 {isCancel ? (
                     <Button

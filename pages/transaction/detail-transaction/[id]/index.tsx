@@ -1,4 +1,4 @@
-import { Container, ModalDeleteTransaction, ModalRating, ModalTransaction, TransactionDetail, TransactionExtra } from '@/app/components'
+import { Container, ModalDeleteTransaction, TransactionDetail, TransactionExtra } from '@/app/components'
 import Layout from '@/app/layout'
 import Custom500 from '@/pages/500'
 import { getTransactionDetailService } from '@/services'
@@ -40,12 +40,12 @@ const TransactionDetailPage = ({ transaction, tran_id, internalError }: { transa
 
     return (
         <Layout>
-            <ModalRating />
+            {/* <ModalRating /> */}
             <ModalDeleteTransaction />
-            <ModalTransaction tran_id={tran_id} creator={transaction.data.post.createUser} userId={transaction.data.post.userId}/>
+            {/* <ModalTransaction tran_id={tran_id} creator={transaction.data.post.createUser} userId={transaction.data.post.userId}/> */}
             <Container>
                 <div className="relative py-10">
-                    {transaction.data.slots == null ? (
+                    {transaction.data.post == null ? (
                         <div className="relative h-screen flex flex-col items-center justify-center gap-5 text-primary-blue-cus font-semibold">
                             <div className="flex space-x-3 items-center flex-wrap justify-center transition-all duration-500">
                                 <h1 className="md:text-4xl text-3xl transition-all duration-500 text-center">Hóa đơn này không tồn tại!</h1>

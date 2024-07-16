@@ -2,7 +2,7 @@
 
 import { GlobalContext } from "@/contexts"
 import { useForm } from "react-hook-form"
-import { bookingService } from "@/services"
+import { buySlotService } from "@/services"
 import { useContinuePaymentModal, useFailPaymentModal, useFeaturingModal, useSuccessPaymentModal } from "@/hooks"
 import Image from "next/image"
 import { useContext } from "react"
@@ -19,8 +19,6 @@ const ModalContinuePayment = () => {
     const successPaymentModal = useSuccessPaymentModal()
     const featuringModal = useFeaturingModal()
 
-    //console.log(continuePaymentModal.slotsIdArray, continuePaymentModal.post_id, continuePaymentModal.checkedMethod)
-
     const onSubmit = async () => {
         if (setIsLoadingModal) setIsLoadingModal(true)
 
@@ -32,14 +30,15 @@ const ModalContinuePayment = () => {
         }
 
         if (user && user.id && continuePaymentModal.post_id) {
-            const res = await bookingService({
-                userId: user.id,
-                postId: continuePaymentModal.post_id,
-                slotsInfo: continuePaymentModal.slotsIdArray,
-                isVnpay: true
-            })
+            console.log(continuePaymentModal.post_id);
+            console.log(user.id);
+            console.log(continuePaymentModal.slotsIdArray);
 
-            //console.log(res)
+            const res = await buySlotService({
+                idPost: continuePaymentModal.post_id,
+                idUser: user.id,
+                postSlot: continuePaymentModal.slotsIdArray
+            })
 
             if (res.data == null) {
                 if (setIsLoadingModal) setIsLoadingModal(false)
@@ -50,7 +49,7 @@ const ModalContinuePayment = () => {
 
             continuePaymentModal.onClose()
             if (setFetchUser) setFetchUser(true)
-            successPaymentModal.onOpen(res.data.transactionId)
+            successPaymentModal.onOpen(res.data.tranSactionId)
             mutate(`/api/wallet/${user.id}/user_wallet`)
         }
 
@@ -76,7 +75,7 @@ const ModalContinuePayment = () => {
                     width={200}
                     className="object-contain w-20 h-16"
                 />
-                <label className="text-gray-600 font-semibold text-3xl truncate">Bạn có muốn thanh toán không?</label>
+                <label className="text-gray-600 font-semibold text-3xl truncate">Bạn có muốn đặt sân không?</label>
                 <div className="flex flex-row gap-5">
                     <Button
                         title="Không"

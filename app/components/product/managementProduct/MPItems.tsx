@@ -67,6 +67,7 @@ const MPItems = () => {
                             postImgUrl={item.postImgUrl}
                             status={item.status}
                             isDelete={item.isDelete}
+                            userName={item.userName}
                         />
                     ))}
                     <div className="flex justify-center mt-10 text-base font-semibold">

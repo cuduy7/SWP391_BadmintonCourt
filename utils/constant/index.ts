@@ -6,37 +6,21 @@ import { FaHome, FaPollH, FaUserEdit, FaUserFriends, FaUserSlash } from "react-i
 import { IoShieldCheckmark } from "react-icons/io5";
 
 export const navLinks = [
-    // {
-    //     id: "1",
-    //     label: "Nhắn tin",
-    //     href: "/user/chat-room"
-    // },
     {
-        id: "2",
-        label: "Ví tiền",
-        href: "/user/wallet"
+        id: "1",
+        label: "Danh sách sân",
+        href: "/product/list-product"
     },
     {
-        id: "3",
-        label: "Xem thêm",
-        linkItems: [
-            {
-                id: "1",
-                label: "Danh sách sân",
-                href: "/product/list-product"
-            },
-            {
-                id: "4",
-                label: "Quản lý đơn đặt",
-                href: "/transaction/list-transaction"
-            },
-            {
-                id: "5",
-                label: "Các điều khoản",
-                href: "/policy"
-            },
-        ]
-    }
+        id: "4",
+        label: "Quản lý đơn đặt",
+        href: "/transaction/list-transaction"
+    },
+    {
+        id: "5",
+        label: "Các điều khoản",
+        href: "/policy"
+    },
 ]
 
 export const navLinksAdmin = [
@@ -69,11 +53,11 @@ export const navLinksAdmin = [
                 label: "Quản lý bài viết",
                 href: "/admin/post-management"
             },
-            {
-                id: "5",
-                label: "Quản lý báo cáo",
-                href: "/admin/user-report-management"
-            },
+            // {
+            //     id: "5",
+            //     label: "Quản lý báo cáo",
+            //     href: "/admin/user-report-management"
+            // },
             {
                 id: "6",
                 label: "Quản lý doanh thu",
@@ -92,12 +76,13 @@ export const navLinksStaff = [
     {
         id: "2",
         label: "Xem thêm",
-        linkItems: [       
+        linkItems: [
+            // {
+            //     id: "2",
+            //     label: "Quản lý báo cáo",
+            //     href: "/admin/user-report-management"
+            // },
             {
-                id: "2",
-                label: "Quản lý báo cáo",
-                href: "/admin/user-report-management"
-            },{
                 id: "3",
                 label: "Đăng bài",
                 href: "/product/post-product"
@@ -243,8 +228,8 @@ export const adminOptions: Option[] = [
     { id: 3, label: "Quản lý tin tức", icon: BsFillFileEarmarkPostFill },
     { id: 4, label: "Quản lý doanh thu", icon: BsFillFileEarmarkRuledFill },
     { id: 5, label: "Chính sách", icon: FaPollH },
-    { id: 6, label: "Quản lý báo cáo", icon: BsFileEarmarkPost },
-    { id: 7, label: "Đăng bài", icon: BsFileEarmarkPost },
+    // { id: 6, label: "Quản lý báo cáo", icon: BsFileEarmarkPost },
+    { id: 7, label: "Đăng sân", icon: BsFileEarmarkPost },
     { id: 8, label: "Quản lí sân", icon: BsFileEarmarkPost },
 ]
 
@@ -618,16 +603,17 @@ export const listTitleFooter = [
 ]
 
 export const listOverviewFooter = [
-    { label: "VBM Sports", content: "Là hệ thống cửa hàng đặt sân cầu lông cho những ai muốn có một nơi để nâng cao kỹ năng hay đơn giản là thỏa sức với đam mê của mình về bộ môn này" },
-    { label: "Với sứ mệnh:", content: "VBM cam kết mang đến những trải nghiệm tốt nhất phục vụ cho người chơi có niềm đam mê với cầu lông" },
-    { label: "Tầm nhìn:", content: "Trở thành trung tâm đặt sân hàng đầu Việt Nam"},
+    { label: "Vietnam Badminton Court (VBC)", content: "Là hệ thống các sân cầu lông hàng đầu tại Thành phố Hồ Chí Minh, nơi mang đến trải nghiệm tuyệt vời cho những người đam mê môn thể thao này. Tại VBC, chúng tôi cam kết cung cấp các điều kiện tốt nhất để người chơi có thể tận hưởng và phát triển kỹ năng của mình." },
+    { label: "Với sứ mệnh:", content: "Vietnam Badminton Court (VBC) mong muốn có thể tạo ra một môi trường thân thiện, chuyên nghiệp và đầy cảm hứng để phát triển môn thể thao cầu lông tại Việt Nam. Chúng tôi cam kết cung cấp cơ sở vật chất hiện đại, dịch vụ chất lượng cùng đội ngủ quản lí chuyên nghiệp." },
+    { label: "Tầm nhìn:", content: "Vietnam Badminton Court (VBC) hướng tới mục tiêu trở thành trung tâm cầu lông hàng đầu tại Việt Nam " },
 ]
 
 export const listContentFooter = [
-    { label: "Hotline:", content: "0909090909 | 1900585858" },
-    { label: "Email:", content: "info@shopVBM.com" },
-    { label: "Hotline:", content: "032.63.67.618" },
-    { label: "Hỗ trợ dịch vụ:", content: "0334.741.141" },
+    { label: "Hệ thống cửa hàng:", content: "VBC Hiện có 2 chi nhánh trên địa bàn Tp. Hồ Chí Minh" },
+    { label: "Chi Nhánh 1:", content: "Số 3 Hòa Bình, Phường 3, Quận 11, TP. Hồ Chí Minh, Việt Nam" },
+    { label: "Chi nhánh 2:", content: "208 Nguyễn Hữu Cảnh, Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh, Việt Nam" },
+    { label: "Hotline", content: "0774676451" },
+    { label: "Email", content: "VBCSport@gmail.com" },
 ]
 
 export const Status = [

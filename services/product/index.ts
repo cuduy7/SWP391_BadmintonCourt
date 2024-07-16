@@ -1,4 +1,4 @@
-import { CreateBadmintonForm } from "@/types"
+import { CreateBadmintonForm, UpdateForm, UpdateStatusForm } from "@/types"
 import AxiosClient from "../AxiosInstance"
 
 export const getListProductService = async () => {
@@ -45,7 +45,7 @@ export const getProductSuggestService = async (id: string) => {
 
 export const getAllDistrictService = async () => {
     try {
-        const response = await AxiosClient.get(`/api/districts`)
+        const response = await AxiosClient.get(`/api/cities`)
 
         return response.data;
     } catch (error: any) {
@@ -120,18 +120,51 @@ export const postBadmintonService = async (data: CreateBadmintonForm) => {
         const response = await AxiosClient.post(`/api/posts/create_by/${data.id}`, {
             title: data.title,
             address: data.address,
-            slots: data.slots,
+            SlotInfor: data.slots,
             description: data.description,
             highlightUrl: data.highlightUrl,
             imgUrls: data.imgUrls,
-            levelSlot: data.levelSlot,
-            categorySlot: data.categorySlot
         })
 
         return response.data;
     } catch (error: any) {
         //console.log(error)
 
+        if (error && error.response) {
+            return error.response.data
+        }
+    }
+}
+
+export const UpdateService = async (data: UpdateForm) => {
+    console.log(data)
+
+    try {
+        const response = await AxiosClient.put(`/api/posts/update_post`, {
+            idPost: data.id,
+            slotInfor: data.slots,
+        })
+
+        return response.data;
+    } catch (error: any) {
+        //console.log(error)
+
+        if (error && error.response) {
+            return error.response.data
+        }
+    }
+}
+
+export const UpdateStatusService = async (data: UpdateStatusForm) => {
+    try {
+        const response = await AxiosClient.put(`/api/transactions/status_info`, {
+            idPost: data.idPost,
+            idUser: data.idUser,
+            postSlot: data.postSlot,
+        })
+
+        return response.data;
+    } catch (error: any) {
         if (error && error.response) {
             return error.response.data
         }

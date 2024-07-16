@@ -11,7 +11,7 @@ const PostBadmintonPage = () => {
                     <div className="relative py-10">
                         <div className="flex justify-center">
                             <h1 className="text-primary-blue-cus font-semibold md:text-4xl text-3xl">
-                                Tạo Bài Đăng mới
+                                Tạo Sân mới
                             </h1>
                         </div>
                     </div>

@@ -20,7 +20,7 @@ const ProductContent: React.FC<ListProductData> = ({
     quantitySlot,
     fullName,
     userImgUrl,
-    userId
+    userId,
 }) => {
     return (
         <Link className="
@@ -29,7 +29,7 @@ const ProductContent: React.FC<ListProductData> = ({
                 grid-cols-1
                 border-2 
                 rounded-xl
-                h-auto
+                h-[20rem]
                 w-auto
                 mb-4
                 relative
@@ -77,6 +77,8 @@ const ProductContent: React.FC<ListProductData> = ({
                 <div className="
                         flex 
                         flex-col 
+                        justify-around
+                        h-full
                         gap-3
                     "
                 >
@@ -84,26 +86,7 @@ const ProductContent: React.FC<ListProductData> = ({
                         <h3 className="text-3xl font-semibold text-[#922049] truncate">
                             {title}
                         </h3>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-2">
-                            <div className="flex-shrink-0 relative">
-                                <Image
-                                    src={validateURLAvatar(userImgUrl)}
-                                    alt={`avatar ${userId}`}
-                                    width={50}
-                                    height={50}
-                                    className="object-cover w-14 h-14 rounded-full border border-primary-blue-cus"
-                                />
-                            </div>
-                            <div className="text-xl text-gray-600 font-medium">
-                                {validateName(fullName)}
-                            </div>
-                        </div>
-                        <div className="flex-nowrap flex-shrink-0 text-2xl font-semibold text-primary-blue-cus">
-                            {formatMoney(new Decimal(price ?? 0))}/Chỗ
-                        </div>
-                    </div>
+                    </div>                  
                     <div className="text-lg text-gray-500 line-clamp-2 min-h-[3rem]">
                         Mô tả ngắn: {validateDes(contentPost)}
                     </div>
@@ -112,27 +95,13 @@ const ProductContent: React.FC<ListProductData> = ({
                         <span className="font-semibold text-black">
                             {validateAddress(addressSlot)}
                         </span>
-                    </div>
-                    <div className="flex space-x-1 text-lg text-gray-500">
-                        <span>Ngày:</span>
-                        <span className="font-semibold text-black">
-                            {days ?? "Chưa có"}
-                        </span>
-                    </div>
+                    </div>                 
                     <div className="flex space-x-1 text-lg text-gray-500">
                         <span>Thời gian mở cửa:</span>
                         <span className="font-semibold text-black">
-                            <FormatTime timeString={startTime ?? "00:00"} />
-                            -
-                            <FormatTime timeString={endTime ?? "00:00"} />
+                            6:00-22:00
                         </span>
-                    </div>
-                    <div className="flex space-x-1 text-lg text-gray-500">
-                        <span>Chỗ:</span>
-                        <span className="font-semibold text-black">
-                            {quantitySlot ?? "Chưa có"}
-                        </span>
-                    </div>
+                    </div>                   
                 </div>
             </div>
         </Link>

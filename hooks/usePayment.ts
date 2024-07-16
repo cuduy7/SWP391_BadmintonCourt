@@ -12,20 +12,15 @@ interface FailModalStore {
     onOpen: (message: string) => void;
     onClose: () => void;
 }
+
 interface ContinueModalStore {
     isOpen: boolean;
-    slotsIdArray: {
-        dateRegis: string,
-        numSlots: number
-    }[];
+    slotsIdArray: any;
     post_id: string | null
     checkedMethod: boolean | false
     onOpen: (post_id: string) => void;
     onClose: () => void;
-    setSlotsIdArray: (slotsIdArray: {
-        dateRegis: string,
-        numSlots: number
-    }[]) => void
+    setSlotsIdArray: (slotsIdArray: any) => void
     setCheckMethod: (checkMethod: boolean) => void
 }
 

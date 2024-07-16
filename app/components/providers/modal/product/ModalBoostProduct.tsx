@@ -38,7 +38,7 @@ const ModalBoostProduct = () => {
                 position: toast.POSITION.TOP_RIGHT
             })
 
-            mutate(`/api/posts/${user.id}/post_suggestion`)
+            mutate("/posts/GetListPost")
             boostProductModal.onClose()
         }
 

@@ -32,9 +32,9 @@ const AdminLayout: React.FC<LayoutProps> = ({
             case '/admin/rule-list':
                 setSelectedOption(5);
                 break;
-            case '/admin/user-report-management':
-                setSelectedOption(6);
-                break;            
+            // case '/admin/user-report-management':
+            //     setSelectedOption(6);
+            //     break;            
             case '/admin/create-post':
                 setSelectedOption(7)
                 break;
@@ -65,9 +65,9 @@ const AdminLayout: React.FC<LayoutProps> = ({
             case 5:
                 router.push('/admin/rule-list');
                 break;
-            case 6:
-                router.push('/admin/user-report-management');
-                break;
+            // case 6:
+            //     router.push('/admin/user-report-management');
+            //     break;
             case 7:
                 router.push('/admin/create-post');
                 break;

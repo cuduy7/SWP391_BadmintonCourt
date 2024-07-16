@@ -19,7 +19,7 @@ class MyApp extends App {
         return (
             <>
                 <Head>
-                    <title>VBM SPORTS</title>
+                    <title>Vietnam Badminton Court (VBC)</title>
                     <link rel="icon" href="/images/Vector.png" />
                 </Head>
                 <main className={inter.className}>

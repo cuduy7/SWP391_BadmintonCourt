@@ -52,7 +52,7 @@ const ModalCheckPost = () => {
                 position: toast.POSITION.TOP_RIGHT
             })
 
-            mutate(`/api/posts/${checkPostModal.value.id}/post_suggestion`)
+            mutate("/posts/GetListPost")
             if (user) mutate(`/api/wallet/${user.id}/user_wallet`)
             checkPostModal.onClose()
             router.push("/")

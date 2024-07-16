@@ -1,6 +1,5 @@
 "use client"
 
-// Import necessary modules and components
 import { AxiosClient } from "@/services"
 import { UserManagePostData, UserDetailManage } from "@/types"
 import { useRouter } from "next/router"
@@ -13,22 +12,19 @@ import { useAdminBanModal, useAdminDeletePostModal, useAdminDownRoleModal, useAd
 import { GlobalContext } from "@/contexts"
 import ReactPaginate from "react-paginate"
 
-// Fetcher function for SWR to get data from API
 const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
-// Props interface for TablePost component
 interface TablePostProps {
     listItem: UserManagePostData[]
 }
 
-// TablePost component to display user posts in a table
-const TablePost: React.FC<TablePostProps> = ({ listItem }) => {
-    // State to manage the visibility of action menu
+const TablePost: React.FC<TablePostProps> = ({
+    listItem
+}) => {
     const [showToggleItemID, setShowToggleItemID] = useState<number | null>(null)
     const adminDeletePostModal = useAdminDeletePostModal()
     const router = useRouter()
 
-    // Toggle the action menu visibility
     const handleToggle = (itemID: number) => {
         if (showToggleItemID === itemID) {
             setShowToggleItemID(null)
@@ -37,14 +33,12 @@ const TablePost: React.FC<TablePostProps> = ({ listItem }) => {
         }
     }
 
-    // Handle outside click to close the action menu
     const handleOutsideClick = () => {
         setShowToggleItemID(null)
     }
     const ref = useRef<HTMLDivElement | null>(null)
     useOutsideClick(ref, handleOutsideClick)
 
-    // Titles for the table columns
     const listTitleUserDetail = [
         { title: "ID" },
         { title: "Tên bài viết" },
@@ -52,7 +46,6 @@ const TablePost: React.FC<TablePostProps> = ({ listItem }) => {
         { title: "Thao tác" }
     ]
 
-    // Actions for each post
     const listAction = [
         { title: "Xem bài viết", src: (postId: string) => router.push(`/product/detail-product/${postId}`) },
         { title: "Xoá bài viết", src: (postId: string) => { adminDeletePostModal.onOpen(postId, null) } },
@@ -100,7 +93,6 @@ const TablePost: React.FC<TablePostProps> = ({ listItem }) => {
     )
 }
 
-// UserDetailManage component to display and manage user details
 const UserDetailManage = () => {
     const router = useRouter()
     const adminBanModal = useAdminBanModal()
@@ -112,12 +104,10 @@ const UserDetailManage = () => {
 
     const { id } = router.query
 
-    // Use SWR to fetch user details
     const { data: listPostForUser, error } = useSWR<UserDetailManage>(user && user.id && id ? `/api/users/admin/${user.id}/user/${id}/detail` : null, fetcher, { refreshInterval: 10000 })
 
     const isLoadingData = !listPostForUser && !error
 
-    // Pagination state
     const [currentPage, setCurrentPage] = useState(0)
     const itemsPerPage = 10
     const pageCount = Math.ceil(listPostForUser && listPostForUser.data && listPostForUser.data.posts ? listPostForUser.data.posts.length / itemsPerPage : 0)

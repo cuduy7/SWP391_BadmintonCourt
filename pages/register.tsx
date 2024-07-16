@@ -3,7 +3,7 @@ import { FormatUI, RegisterFooter, RegisterForm } from "@/app/components";
 const RegisterPage = () => {
     return (
         <FormatUI
-            src="/images/login_background.jpg"
+            src="/images/background_4.png"
             title="Đăng ký"
             body={<RegisterForm />}
             footer={<RegisterFooter />}

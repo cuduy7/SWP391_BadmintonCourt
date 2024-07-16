@@ -63,7 +63,7 @@ const RegisterForm = () => {
                         name={item.name}
                         placeholder={item.placeholder}
                         type={item.type}
-                        colorInput="bg-inherit border-2 border-solid border-white text-white pl-10"
+                        colorInput="bg-inherit border-2 border-solid text-white pl-10"
                         id={item.id}
                         register={register}
                         errors={errors}

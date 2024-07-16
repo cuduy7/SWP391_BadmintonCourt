@@ -56,7 +56,7 @@ const FilterCus = () => {
                             aria-expanded="false"
                             onClick={toggleDropdown}
                         >
-                            Chọn quận
+                            Chọn Chi Nhánh
                             <span>
                                 {isDropdownOpen ?
                                     <AiFillCaretUp
@@ -94,9 +94,9 @@ const FilterCus = () => {
                                                 border-b-2 
                                                 border-solid 
                                                 block 
-                                                py-2 
-                                                whitespace-nowrap
-                                                w-full
+                                                py-2                                               
+                                                w-80
+                                                text-wrap
                                                 text-left
                                                 text-lg
                                                 ${saveDistrict && saveDistrict.id.toString() === item.id.toString() ? "text-primary-blue-cus" : "text-gray-600"}

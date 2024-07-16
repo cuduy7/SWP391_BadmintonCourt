@@ -30,12 +30,6 @@ const TransactionDetail: React.FC<TransactionPaymentDetailData> = ({
                         <span className="font-semibold">Số lượng đặt hàng:</span>
                         <span className="font-medium">{slotCount}</span>
                     </section>
-                    <section className="flex flex-col gap-3 text-lg">
-                        <label className="font-semibold">ID chỗ của bạn:</label>
-                        {slots && slots.map((slot) => (
-                            <p className="font-medium pl-2" key={slot.id}>- {slot.id}</p>
-                        ))}
-                    </section>
                     <section className="space-x-3 text-lg">
                         <span className="font-semibold">Người thanh toán:</span>
                         <span className="font-medium">{buyerName}</span>
@@ -50,22 +44,21 @@ const TransactionDetail: React.FC<TransactionPaymentDetailData> = ({
                     <h1 className="text-3xl font-semibold ">
                         Tham gia tập luyện cùng tôi!!!
                     </h1>
-                    <section className="flex space-x-3 text-lg">
-                        <label className="font-semibold">Thể loại:</label>
-                        <p className="font-medium">{post && post.categorySlot}</p>
-                    </section>
                     <section className="space-x-3 text-lg">
                         <span className="font-semibold">Địa chỉ:</span>
                         <span className="font-medium">{post && post.address}</span>
                     </section>
-                    <section className="space-x-3 text-lg">
-                        <span className="font-semibold">Được tạo bởi:</span>
-                        <span className="font-medium">{post && post.createUser}</span>
-                    </section>
                     <section className="flex flex-col gap-3 text-lg">
                         <label className="font-semibold">Ngày chơi:</label>
-                        {slots && slots.map((slot) => (
-                            <p className="font-medium pl-2" key={slot.id}>- {formatDateFunc(slot.playDate)}</p>
+                        {post && post.slots.map((post, index) => (
+                            <section className="flex flex-row gap-2" key={index}>
+                                <span className="font-medium pl-2">- {formatDateFunc(post.dateSlot)}</span>
+                                {post.slot.map((slot, idx) => (
+                                    <span key={idx}>
+                                        - {slot};
+                                    </span>
+                                ))}
+                            </section>
                         ))}
                     </section>
                 </div>

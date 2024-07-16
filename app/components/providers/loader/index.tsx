@@ -80,8 +80,8 @@ export function LoadingActionPayment({ color, loading, size }: LoadingProps) {
                     radius={10}
                     data-testid="loader"
                 />
-                <div className="pt-5 text-3xl font-semibold text-black">Đang trong quá trình thanh toán</div>
-                <div className="text-lg font-medium text-gray-500">Bạn vui lòng chờ trong giây lát, hệ thống đang chờ xử lý thanh toán của bạn</div>
+                <div className="pt-5 text-3xl font-semibold text-black">Đang trong quá trình đặt sân</div>
+                <div className="text-lg font-medium text-gray-500">Bạn vui lòng chờ trong giây lát, hệ thống đang chờ xử lý đặt sân của bạn</div>
             </div>
         </div>
     );

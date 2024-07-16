@@ -37,7 +37,7 @@ const ProductItems = () => {
     return (
         <div className="lg:col-span-3 col-span-1 h-auto w-full relative">
             <div className="flex md:flex-row flex-col md:justify-between gap-3 pb-5">
-                <h1 className="text-4xl font-semibold text-gray-600 translate-y-0">Bài đăng đặt sân</h1>
+                <h1 className="text-4xl font-semibold text-gray-600 translate-y-0">Danh Sách Sân</h1>
                 <Search value={searchTerm} onChange={setSearchTerm} style="w-full md:w-2/4" />
             </div>
             {isLoading ? (

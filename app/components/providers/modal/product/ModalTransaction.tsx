@@ -32,7 +32,7 @@ const ModalTransaction = ({ tran_id, creator, userId }: { tran_id: string, creat
                 return
             }
 
-            toast.success("Thanh toán thành công", {
+            toast.success("Đặt sân thành công", {
                 position: toast.POSITION.TOP_RIGHT
             })
 

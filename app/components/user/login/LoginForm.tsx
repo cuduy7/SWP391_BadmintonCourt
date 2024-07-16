@@ -67,7 +67,7 @@ const LoginForm = () => {
         Cookies.set("token", res.data.token)
         localStorage.setItem("user", JSON.stringify(res.data))
 
-        
+
         if (setIsLoading) setIsLoading(false)
         if (setIsRefresh) setIsRefresh(true)
     }
@@ -77,7 +77,7 @@ const LoginForm = () => {
             router.push("/admin/admin-home")
         } else if (user && user.role && user.role.toLowerCase() === "staff") {
             router.push("/")
-        }else if (user && user.isNewUser) {
+        } else if (user && user.isNewUser) {
             router.push("/verify-otp")
         } else if (user && user.role && user.role.toLowerCase() === "user") {
             router.push("/")

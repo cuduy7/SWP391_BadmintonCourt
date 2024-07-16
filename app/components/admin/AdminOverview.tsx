@@ -1,30 +1,27 @@
 "use client"
 
-import { GlobalContext } from "@/contexts"; // Importing GlobalContext for accessing global state
-import { OptionsOverviewProps } from "@/types" // Importing OptionsOverviewProps type
-import { customStyles } from "@/utils"; // Importing customStyles for Select component styling
-import { useContext } from "react"; // Importing useContext hook from React
-import Select from 'react-select' // Importing Select component from react-select
+import { GlobalContext } from "@/contexts";
+import { OptionsOverviewProps } from "@/types"
+import { customStyles } from "@/utils";
+import { useContext } from "react";
+import Select from 'react-select'
 
-// AdminOverview component
 const AdminOverview: React.FC<OptionsOverviewProps> = ({
     options,
     onOptionSelect,
     selectedOption
 }) => {
-    // Mapping options to the format required by react-select
     const selectOptions = options.map(option => ({
         value: option.id,
         label: option.label,
         icon: option.icon,
     }))
 
-    // Handling selection change in react-select
     const handleChange = (selectedOption: any) => {
-        onOptionSelect(selectedOption.value); // Calling onOptionSelect with the selected option's value
+        onOptionSelect(selectedOption.value);
     }
 
-    const { user } = useContext(GlobalContext) || {} // Accessing user from GlobalContext
+    const { user } = useContext(GlobalContext) || {}
 
     return (
         <div className="
@@ -55,13 +52,13 @@ const AdminOverview: React.FC<OptionsOverviewProps> = ({
                 "
             >
                 <div className="text-gray-600 font-semibold text-2xl">
-                    {user && user.fullName} {/* Displaying user's full name */}
+                    {user && user.fullName}
                 </div>
                 <div className="text-xl font-semibold italic text-gray-500">
-                    {user && user.role} {/* Displaying user's role */}
+                    {user && user.role}
                 </div>
             </div>
-            <div className="border-b border-black border-opacity-10" /> {/* Divider */}
+            <div className="border-b border-black border-opacity-10" />
             <div className="
                     lg:flex
                     lg:flex-col
@@ -69,7 +66,6 @@ const AdminOverview: React.FC<OptionsOverviewProps> = ({
                     hidden
                 "
             >
-                {/* Rendering options as buttons for large screens */}
                 {options.map((option) => (
                     <button className={`
                             relative 
@@ -86,26 +82,25 @@ const AdminOverview: React.FC<OptionsOverviewProps> = ({
                         onClick={() => onOptionSelect(option.id)}
                     >
                         <div className="flex-shrink-0">
-                            <option.icon size={24} /> {/* Rendering option icon */}
+                            <option.icon size={24} />
                         </div>
                         <p className="text-lg font-medium text-left">
-                            {option.label} {/* Rendering option label */}
+                            {option.label}
                         </p>
                     </button>
                 ))}
             </div>
             <div className="lg:hidden block">
-                {/* Rendering react-select for small screens */}
                 <Select
                     options={selectOptions}
                     onChange={handleChange}
                     isSearchable={false}
                     value={selectOptions.find(option => option.value === selectedOption)}
-                    styles={customStyles} // Applying custom styles
+                    styles={customStyles}
                 />
             </div>
         </div>
     )
 }
 
-export default AdminOverview // Exporting the component
+export default AdminOverview

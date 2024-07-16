@@ -14,7 +14,7 @@ const IsMobileLogo = () => {
             <Link href="/" className="flex relative">
                 <Image
                     height="40"
-                    src="/images/Vector.png"
+                    src="/images/logo.png"
                     alt="Logo"
                     className="
                         cursor-pointer 

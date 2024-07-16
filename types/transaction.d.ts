@@ -26,6 +26,11 @@ export interface TransactionPaymentDetail {
             endTime: string
             createUser: string
             categorySlot: string
+            slots: {
+                dateSlot: string
+                slot: string[]
+                pricePerSlot: number
+            }[];
         }
     }
 }
@@ -54,6 +59,11 @@ export interface TransactionPaymentDetailData {
         endTime: string
         createUser: string
         categorySlot: string
+        slots: {
+            dateSlot: string
+            slot: string[]
+            pricePerSlot: number
+        }[];
     }
 }
 
@@ -71,9 +81,9 @@ export interface ListTransaction {
         transacionId: string
         coverImage: string
         bookedInfos: {
-            createSlot: string
-            bookedSlot: number
-            imageUrls: string[]
+            dateSlot: string
+            slot: string[]
+            pricePerSlot: number
         }[]
         chatRoomId: string
     }[]
@@ -91,9 +101,9 @@ export interface ListTransactionData {
     transacionId: string
     coverImage: string
     bookedInfos: {
-        createSlot: string
-        bookedSlot: number
-        imageUrls: string[]
+        dateSlot: string
+        slot: string[]
+        pricePerSlot: number
     }[]
     chatRoomId: string
 }

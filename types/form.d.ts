@@ -85,16 +85,29 @@ export interface CreateBadmintonForm {
     title: string 
     address: string 
     slots: {
-        startTime: string,
-        endTime: string,
-        price: number,
-        availableSlot: number,
-    }[]
-    levelSlot: string
-    categorySlot: string
+        TimeSlot: string[]
+        Price: number
+    }
     description: string 
     highlightUrl: string 
     imgUrls: string[] 
+}
+
+export interface UpdateForm {
+    id: string 
+    slots: {
+        TimeSlot: string[]
+        Price: number
+    }
+}
+
+export interface UpdateStatusForm {
+    idPost: string
+    idUser: string
+    postSlot: {
+        dateSlot: string
+        slot: string[]
+    }[]
 }
 
 export interface ReportUserFormData {
@@ -130,9 +143,11 @@ export interface CheckSlotFormData {
     }[]
     isVnpay: boolean
 }
+
 export interface BuySlotFormData {
     idUser: string
-    idSlot: number[]
+    idPost: string
+    postSlot: any
 }
 
 export interface SettingPasswordForm {

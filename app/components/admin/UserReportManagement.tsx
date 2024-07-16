@@ -127,7 +127,7 @@ const UserReportManagement = () => {
     const { user } = useContext(GlobalContext) || {}
     const [selectOption, setSelectOption] = useState(options[0])
 
-    const { data: listUserReport, error, isLoading } = useSWR<UserReportManagement>(selectOption ? `/api/reports/type/${selectOption.value}` : null, fetcher, { refreshInterval: 10000 })
+    const { data: listUserReport, error, isLoading } = useSWR<UserReportManagement>(selectOption ? `/api/users/type/${selectOption.value}` : null, fetcher, { refreshInterval: 10000 })
 
     const filteredUserReport = listUserReport && listUserReport.data && listUserReport.data.filter(report => report.content && removeVietnameseTones(report.content).includes(removeVietnameseTones(searchTerm)))
 

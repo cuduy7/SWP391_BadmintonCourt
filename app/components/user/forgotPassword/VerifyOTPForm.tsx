@@ -71,7 +71,7 @@ const VerifyOTPForm = () => {
 
     useEffect(() => {
         if (isRegister) {
-            router.push("/register-stepper")
+            router.push("/")
         } else if (isVerify) {
             router.push("/change-password")
         }

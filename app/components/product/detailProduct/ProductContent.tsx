@@ -8,8 +8,9 @@ const ProductContent: React.FC<ProductDetailContentData> = ({
     levelSlot,
     categorySlot,
     addressSlot,
-    slotInfos,
+    postSlot,
     title,
+    price,
     userId
 }) => {
     return (
@@ -19,6 +20,7 @@ const ProductContent: React.FC<ProductDetailContentData> = ({
                     key={id}
                     id={id}
                     imageUrls={imageUrls}
+                    price={price}
                 />
             </div>
             <div className="lg:col-span-6">
@@ -28,8 +30,9 @@ const ProductContent: React.FC<ProductDetailContentData> = ({
                     levelSlot={levelSlot}
                     categorySlot={categorySlot}
                     addressSlot={addressSlot}
-                    slotInfos={slotInfos}
+                    postSlot={postSlot}
                     title={title}
+                    price={price}
                     userId={userId}
                 />
             </div>

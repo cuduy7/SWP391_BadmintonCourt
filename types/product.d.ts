@@ -33,12 +33,10 @@ export interface ProductDetailContent {
         categorySlot?: string | null
         totalRate?: number | null
         userId?: string | null
-        slotInfos?: {
-            startTime: string
-            endTime: string
-            price: number
-            availableSlot: number
-            saveData?: string
+        price: number
+        postSlot?: {
+            dateSlot: string
+            slot: string[]
         }[]
     }
 }
@@ -57,12 +55,10 @@ export interface ProductDetailContentData {
     categorySlot?: string | null
     totalRate?: number | null
     userId?: string | null
-    slotInfos?: {
-        startTime: string
-        endTime: string
-        price: number
-        availableSlot: number
-        saveData?: string
+    price: number
+    postSlot?: {
+        dateSlot: string
+        slot: string[]
     }[]
 }
 
@@ -85,7 +81,7 @@ export interface ListProduct {
         price?: number | null
         highlightUrl?: string | null
         imgUrlPost?: string[] | string | null
-        userId?: string | null
+        userId?: string | null    
     }[]
 }
 
@@ -148,6 +144,7 @@ export interface ManagePost {
         address?: string | null
         status?: boolean | null
         isDelete?: boolean | null
+        userName?: string | null
     }[]
 }
 
@@ -164,4 +161,18 @@ export interface ManagePostData {
     address?: string | null
     status?: boolean | null
     isDelete?: boolean | null
+    userName?: string | null
+}
+
+export interface Slot {
+    dateSlot: string
+    slots: {
+        content: string
+        status: number
+    }[]
+}
+
+export interface SlotData {
+    message: string
+    data: Slot[]
 }

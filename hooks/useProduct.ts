@@ -44,3 +44,17 @@ export const useBoostProductModal = create<BoostProductModalStore>((set) => ({
     onOpen: (postId) => set({ isOpen: true, postId }),
     onClose: () => set({ isOpen: false, postId: null })
 }))
+
+export const useUpdateProductModal = create<BoostProductModalStore>((set) => ({
+    isOpen: false,
+    postId: null,
+    onOpen: (postId) => set({ isOpen: true, postId }),
+    onClose: () => set({ isOpen: false, postId: null })
+}))
+
+export const useManagementModal = create<BoostProductModalStore>((set) => ({
+    isOpen: false,
+    postId: null,
+    onOpen: (postId) => set({ isOpen: true, postId }),
+    onClose: () => set({ isOpen: false, postId: null })
+}))

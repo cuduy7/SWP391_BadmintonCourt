@@ -80,8 +80,9 @@ const DetailBadmintonPage = ({ Product, internalError, postId }: { Product: Prod
                     addressSlot={Product.data.addressSlot}
                     categorySlot={Product.data.categorySlot}
                     levelSlot={Product.data.levelSlot}
-                    slotInfos={Product.data.slotInfos}
+                    postSlot={Product.data.postSlot}
                     title={Product.data.title}
+                    price={Product.data.price}
                     userId={Product.data.userId}
                 />
                 <ProductUserPost
@@ -93,6 +94,7 @@ const DetailBadmintonPage = ({ Product, internalError, postId }: { Product: Prod
                     fullName={Product.data.fullName}
                     totalRate={Product.data.totalRate}
                     userId={Product.data.userId}
+                    price={Product.data.price}
                 />
                 <ProductOtherExtra id={postId}/>
             </Container>

@@ -11,7 +11,7 @@ const ManagementBadmintonPage = () => {
                 <div className="relative">
                     <div className="flex justify-center py-10">
                         <h1 className="text-gray-600 font-semibold md:text-4xl text-3xl">
-                            Quản lý bài đăng
+                            Quản lý sân
                         </h1>
                     </div>
                     <div className="relative w-full flex flex-col gap-3">

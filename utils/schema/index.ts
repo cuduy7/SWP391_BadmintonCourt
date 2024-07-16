@@ -25,7 +25,7 @@ export const registerSchema = yup.object().shape({
         required("Số điện thoại không được để trống").
         matches(phoneRegExp, "Số điện thoại phải nhập số").
         min(7, "Số điện thoại có ít nhất 7 số").
-        max(15, "Số điện thoại nhiều nhất 12 số"),
+        max(15, "Số điện thoại nhiều nhất 15 số"),
     password: yup.string().
         required("Mật khẩu không được để trống").
         min(6, "Mật khẩu phải có ít nhất 6 ký tự").
