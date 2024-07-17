@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "title": "Mục đích của trang web",
+        "description": "Trang web này được tạo ra với mục đích cung cấp thông tin, hướng dẫn, và tài liệu liên quan đến môn thể thao cầu lông. Nó bao gồm các bài viết về kỹ thuật chơi, lịch sử của môn thể thao, thông tin về các giải đấu và cầu thủ nổi tiếng."
+    },
+    {
+        "id": "2",
+        "title": "Nội dung",
+        "description": "Tất cả nội dung trên trang web này phải liên quan đến cầu lông. Bất kỳ bài viết, hình ảnh, video hoặc bình luận nào không liên quan sẽ bị xóa. Nội dung không phù hợp hoặc gây phân biệt đối xử sẽ không được chấp nhận."
+    },
+    {
+        "id": "3",
+        "title": "Tôn trọng quyền riêng tư",
+        "description": "Chúng tôi tôn trọng quyền riêng tư của người dùng và cam kết không chia sẻ thông tin cá nhân của người dùng với bên thứ ba mà không có sự đồng ý của người dùng. Chúng tôi chỉ sử dụng thông tin cá nhân để cung cấp và cải thiện dịch vụ của mình."
+    },
+    {
+        "id": "4",
+        "title": "Quyền sở hữu trí tuệ",
+        "description": "Nội dung được đăng tải trên trang web này thuộc sở hữu của người tạo ra nó. Người dùng không được phép sao chép, phân phối lại nội dung mà không có sự cho phép của chủ sở hữu. Vi phạm quyền sở hữu trí tuệ có thể dẫn đến việc tài khoản bị khóa."
+    },
+    {
+        "id": "5",
+        "title": "Quy định bình luận",
+        "description": "Người dùng phải tôn trọng nhau khi tham gia vào các cuộc thảo luận trên trang web. Bất kỳ hành vi nào coi thường, xúc phạm hoặc quấy rối người khác sẽ không được chấp nhận. Người dùng có thể báo cáo hành vi không phù hợp để quản trị viên xem xét."
+    },
+    {
+        "id": "6",
+        "title": "Quảng cáo và tiếp thị",
+        "description": "Quảng cáo và tiếp thị chỉ được phép nếu chúng liên quan đến cầu lông và tuân thủ các quy định pháp lý. Quảng cáo không liên quan hoặc gây phiền nhiễu cho người dùng có thể bị loại bỏ."
+    }
+]
