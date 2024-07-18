@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 import { LoadingActionWallet, LoadingFullScreen } from "../../loader"
 import CustomModal from "../Modal"
 import { Button } from "../../form"
-import { useManagementModal } from "@/hooks/useProduct"
+import { useDetailTModal, useManagementModal } from "@/hooks/useProduct"
 import { AxiosClient, UpdateStatusService } from "@/services"
 import { SlotData } from "@/types"
 import useSWR from "swr"
@@ -16,10 +16,11 @@ const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
 const ModalManagement = () => {
     const managementModal = useManagementModal()
-    const { setIsLoadingModal, isLoadingModal, user } = useContext(GlobalContext) || {}
+    const { setIsLoadingModal, isLoadingModal } = useContext(GlobalContext) || {}
     const post_id = managementModal.postId
     const [selectedSlots, setSelectedSlots] = useState<{ [key: string]: string[] }>({})
     const [checkedStatus, setCheckedStatus] = useState<{ [key: string]: boolean }>({})
+    const detailTModal = useDetailTModal()
 
 
     const handleCheckboxChange = (dateSlot: string, slot: string, isChecked: boolean) => {
@@ -107,7 +108,7 @@ const ModalManagement = () => {
             height="h-fit"
         >
             <form className="flex flex-col pb-5 gap-3 w-[60rem]">
-                <label className="text-gray-600 font-semibold text-3xl">Quản lý trạng thái sân chơi</label>
+                <label className="text-gray-600 font-semibold text-3xl">Quản lý sân</label>
                 <div className="flex flex-row gap-5 items-center justify-center">
                     <p className="text-gray-700 text-lg">*Lưu ý:</p>
                     <div className="flex flex-row gap-1 items-center">
@@ -173,7 +174,11 @@ const ModalManagement = () => {
                                                 />
                                             </div>
                                             <div className="col-span-2">
-                                                <span className="text-gray-600">{slot.content}</span>
+                                                {slot.transisionId ? (
+                                                    <div className="text-gray-600 hover:underline hover:text-primary-blue-cus cursor-pointer font-semibold" onClick={() => detailTModal.onOpen(slot.transisionId)}>{slot.content}</div>
+                                                ) : (
+                                                    <span className="text-gray-600">{slot.content}</span>
+                                                )}
                                             </div>
                                             <div className="col-span-1">
                                                 {slot.status === 0 ? (

@@ -1,4 +1,5 @@
 import { AdminLayout, MPItems, ModalAdminDeletePost, ModalRoomByProduct } from "@/app/components";
+import ModalDetailT from "@/app/components/providers/modal/product/ModalDetailT";
 import ModalManagement from "@/app/components/providers/modal/product/ModalManagement";
 import ModalUpdateProduct from "@/app/components/providers/modal/product/ModalUpdateProduct";
 
@@ -8,6 +9,7 @@ export default function PostManager() {
             <ModalRoomByProduct />
             <ModalManagement />
             <ModalUpdateProduct />
+            <ModalDetailT />
             <ModalAdminDeletePost user_id={null} />
             <div className="relative">
                 <div className="flex justify-center py-10">

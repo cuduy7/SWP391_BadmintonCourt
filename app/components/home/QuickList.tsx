@@ -86,7 +86,7 @@ const QuickList = () => {
                             duration-500
                         "
                         >
-                            Danh Sách Sân
+                            Các Sân Mới Nhất
                         </div>
                         <div className="
                             w-1/3 

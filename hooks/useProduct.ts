@@ -23,6 +23,13 @@ interface BoostProductModalStore {
     onClose: () => void;
 }
 
+interface DetailTModalStore {
+    isOpen: boolean;
+    transactionId: string | null;
+    onOpen: (transactionId: string) => void;
+    onClose: () => void;
+}
+
 export const useCheckPostModal = create<CheckPostModalStore>((set) => ({
     isOpen: false,
     message: null,
@@ -57,4 +64,11 @@ export const useManagementModal = create<BoostProductModalStore>((set) => ({
     postId: null,
     onOpen: (postId) => set({ isOpen: true, postId }),
     onClose: () => set({ isOpen: false, postId: null })
+}))
+
+export const useDetailTModal = create<DetailTModalStore>((set) => ({
+    isOpen: false,
+    transactionId: null,
+    onOpen: (transactionId) => set({ isOpen: true, transactionId }),
+    onClose: () => set({ isOpen: false, transactionId: null })
 }))

@@ -158,7 +158,7 @@ const MPContent: React.FC<ManagePostData> = ({
                         </div>
                         <div className="relative w-full col-span-1">
                             <Button
-                                title="Quản lý trạng thái"
+                                title="Quản lý sân"
                                 style="w-full justify-center items-center px-2"
                                 onClick={() => {
                                     if (postId)

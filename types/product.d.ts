@@ -169,6 +169,7 @@ export interface Slot {
     slots: {
         content: string
         status: number
+        transisionId: string
     }[]
 }
 
