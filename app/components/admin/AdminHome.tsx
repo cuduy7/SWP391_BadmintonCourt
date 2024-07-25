@@ -334,7 +334,7 @@ const AdminHome = () => {
                 </div>
             </div>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-5">
-                <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
+                {/* <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
                     <div className="flex xl:flex-row flex-col gap-5 py-3 px-5 items-center justify-around">
                         <div className="relative text-primary-blue-cus flex-shrink-0">
                             <IoWalletOutline size={60} />
@@ -356,7 +356,7 @@ const AdminHome = () => {
                             )}
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
                     <div className="flex xl:flex-row flex-col gap-5 py-3 px-5 items-center justify-around">
                         <div className="relative text-primary-blue-cus flex-shrink-0">
