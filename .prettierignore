@@ -1,0 +1,6 @@
+build
+dev
+
+**/.next
+**/public
+**/node_modules
