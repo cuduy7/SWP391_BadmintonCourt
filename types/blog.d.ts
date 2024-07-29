@@ -42,6 +42,7 @@ export interface ListBlogsData {
 
 export interface BlogsDetail {
     id: string,
+    imgUrl: string,
     description: string,
     title: string,
     createTime: string,
@@ -51,6 +52,7 @@ export interface BlogsDetail {
 export interface BlogsDetailForm {
     data: {
         id: string,
+        imgUrl: string,
         description: string,
         title: string,
         createTime: string,

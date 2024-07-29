@@ -65,6 +65,7 @@ const BlogPage = ({ Blog, internalError, id }: { Blog: BlogsDetailForm, internal
                 <div className="relative py-5">
                     <BlogContent
                         id={id}
+                        imgUrl= {Blog.data.imgUrl}
                         createTime={Blog.data.createTime}
                         description={Blog.data.description}
                         title={Blog.data.title}
