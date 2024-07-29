@@ -296,7 +296,7 @@ const ReportManagement = () => {
                                     data={{
                                         labels: labels,
                                         datasets: [{
-                                            label: "Doanh thu",
+                                            label: "Lịch sử ví",
                                             data: data,
                                             fill: false,
                                             backgroundColor: 'rgb(75, 192, 192)',

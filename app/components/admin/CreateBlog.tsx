@@ -25,40 +25,35 @@ const CreateBlog = () => {
     const [value, setValue] = useState("")
     const { user, isLoading, setIsLoading } = useContext(GlobalContext) || {}
 
-    // Initialize useForm with validation schema
     const { register, handleSubmit, formState: { errors }, setError } = useForm<CreateBlogForm>({
         resolver: yupResolver(createBlogSchema)
     })
 
-    // Handler for rich text editor change
     const handleChange = (content: any, delta: any, source: any, editor: any) => {
-        setValue(editor.getHTML()); // Update value with editor's HTML content
+        setValue(editor.getHTML());
     }
 
-    // Handler for file input change
     const handleFileChange = (e: any) => {
         const file = e.target.files[0]
         const reader = new FileReader()
 
         reader.onloadend = () => {
             if (reader.result) {
-                setUrl(reader.result.toString()); // Update URL with the file's base64 representation
+                setUrl(reader.result.toString());
             }
         }
 
         if (file) {
-            reader.readAsDataURL(file) // Read file as base64
+            reader.readAsDataURL(file)
         } else {
-            setUrl('') // Reset URL if no file is selected
+            setUrl('')
         }
     }
 
-    // Handler for form submission
     const onSubmit = async (data: CreateBlogForm) => {
-        if (setIsLoading) setIsLoading(true) // Set loading state
+        if (setIsLoading) setIsLoading(true)
 
-        // Validate editor content and URL
-        if (!value || value.trim() === "" || value.length < 100 || !url || (!isValidUrl(url) && !isValidBase64(url))) {
+        if (!value || value.trim() === "" || value.length < 100 || !url || !isValidUrl(url) && !isValidBase64(url)) {
             if (!value || value.trim() === "") {
                 setError("description", { message: "Mô tả không được để trống" })
             } else if (value.length < 100) {
@@ -73,11 +68,10 @@ const CreateBlog = () => {
                 }
             }
 
-            if (setIsLoading) setIsLoading(false) // Reset loading state
+            if (setIsLoading) setIsLoading(false)
             return
         }
 
-        // If user is authenticated, create blog post
         if (user && user.id) {
             const res = await createBlogService({
                 user_id: user.id,
@@ -88,12 +82,11 @@ const CreateBlog = () => {
                 highlightImg: processBase64Image(url),
             })
 
-            // Handle response from the create blog service
             if (res.data === null) {
                 toast.error(res.message, {
                     position: toast.POSITION.TOP_RIGHT
                 })
-                if (setIsLoading) setIsLoading(false) // Reset loading state
+                if (setIsLoading) setIsLoading(false)
                 return
             }
 
@@ -101,10 +94,10 @@ const CreateBlog = () => {
                 position: toast.POSITION.TOP_RIGHT
             })
 
-            router.push("/admin/post-management") // Redirect to post management page
+            router.push("/admin/post-management")
         }
 
-        if (setIsLoading) setIsLoading(false) // Reset loading state
+        if (setIsLoading) setIsLoading(false)
     }
 
     return (

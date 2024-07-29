@@ -32,44 +32,40 @@ const TableUserReport: React.FC<TableUserReportProps> = ({
 }) => {
     const router = useRouter()
     const [showToggleItemID, setShowToggleItemID] = useState<string | null>(null)
-    const startIndex = currentPage * itemsPerPage // Calculate starting index for pagination
+    const startIndex = currentPage * itemsPerPage
 
-    // Toggle the visibility of additional options for a specific item
     const handleToggle = (itemID: string) => {
         if (showToggleItemID === itemID) {
-            setShowToggleItemID(null) // Hide options if the same item is clicked again
+            setShowToggleItemID(null)
         } else {
-            setShowToggleItemID(itemID) // Show options for the clicked item
+            setShowToggleItemID(itemID)
         }
     }
 
-    // Hide additional options when clicking outside
     const handleOutsideClick = () => {
         setShowToggleItemID(null);
     }
 
     const ref = useRef<HTMLDivElement | null>(null)
-    useOutsideClick(ref, handleOutsideClick) // Custom hook to detect outside clicks
+    useOutsideClick(ref, handleOutsideClick)
 
-    // Titles for the columns in the report management table
     const listTitleReportManagement = [
         { title: "#" },
         { title: "ID" },
-        { title: "Lỗi vi phạm" }, // Violation error
-        { title: "Nội dung" }, // Content
-        { title: "Ngày nhận" }, // Date received
-        { title: "Tình trạng" }, // Status
-        { title: "Lựa chọn" }, // Options
+        { title: "Lỗi vi phạm" },
+        { title: "Nội dung" },
+        { title: "Ngày nhận" },
+        { title: "Tình trạng" },
+        { title: "Lựa chọn" },
     ]
 
-    // Actions available for each report item
     const listAction = [
         {
-            title: "Xem chi tiết", // View details
+            title: "Xem chi tiết",
             action: (id: string, report_type: string) => {
                 router.push({
                     pathname: `/admin/user-report-detail/${id}`,
-                    query: { report_type: report_type }, // Navigate to the report detail page with query params
+                    query: { report_type: report_type },
                 });
             },
         }

@@ -9,11 +9,12 @@ import AdminOverview from "./AdminOverview";
 import AdminLogout from "./AdminLogout";
 import { LayoutProps } from "@/types";
 
-const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
+const AdminLayout: React.FC<LayoutProps> = ({
+    children
+}) => {
     const [selectedOption, setSelectedOption] = useState<number>(1)
     const router = useRouter()
 
-    // Effect to set the selected option based on the current pathname
     useEffect(() => {
         switch (router.pathname) {
             case '/admin/admin-home':
@@ -35,18 +36,17 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
             //     setSelectedOption(6);
             //     break;            
             case '/admin/create-post':
-                setSelectedOption(7);
+                setSelectedOption(7)
                 break;
             case '/admin/post-manager':
-                setSelectedOption(8);
+                setSelectedOption(8)
                 break;
             default:
                 setSelectedOption(0);
                 break;
         }
-    }, [router.pathname]); // Re-run this effect whenever the pathname changes
+    }, [router.pathname]);
 
-    // Function to handle option selection and navigation
     const handleOptionSelect = (id: number) => {
         setSelectedOption(id)
         switch (id) {
@@ -91,7 +91,6 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
                         lg:grid-cols-5 
                     "
                 >
-                    {/* Sidebar for admin options and logout */}
                     <div className="
                             lg:col-span-1 
                             lg:min-h-screen 
@@ -108,7 +107,6 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
                         />
                         <AdminLogout />
                     </div>
-                    {/* Main content area */}
                     <div className="
                             lg:col-span-4 
                             min-h-screen 

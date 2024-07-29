@@ -26,16 +26,14 @@ interface TableHistoryWalletProps {
 
 const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
-// Titles for the columns in the transaction history table
 const listTitleHistoryWallet = [
     { title: "#" },
-    { title: "Thời gian" }, // Time of the transaction
-    { title: "Thao tác" }, // Action performed in the transaction
-    { title: "Trạng thái" }, // Status of the transaction
-    { title: "Số tiền" }, // Amount of money involved in the transaction
+    { title: "Thời gian" },
+    { title: "Thao tác" },
+    { title: "Trạng thái" },
+    { title: "Số tiền" },
 ]
 
-// Configuration settings with their corresponding labels and type information
 const listTitleSetting = [
     { settingName: SettingNames.PostingFee, label: "Phí đăng bài (VND)", isMoney: true },
     { settingName: SettingNames.BookingFee, label: "Phí hoa hồng (% theo giao dịch)" },
@@ -44,12 +42,9 @@ const listTitleSetting = [
     { settingName: SettingNames.CancelHour, label: "Thời gian hủy bài (giờ)" },
 ]
 
-// Function to export transaction history data to an Excel file
 const exportToExcel = (listItem: HistoryTransactionData[]) => {
-     // Extract headers from listTitleHistoryWallet
     const headers = listTitleHistoryWallet.slice(1, 5).map(item => item.title)
 
-    // Map the transaction data to an array of arrays containing relevant fields
     const data = listItem.map(item => [
         item.time,
         item.type,
@@ -57,20 +52,16 @@ const exportToExcel = (listItem: HistoryTransactionData[]) => {
         item.amount
     ])
 
-    // Insert headers as the first row in the data array
     data.unshift(headers)
 
-    // Create a new worksheet from the data array
     const worksheet = XLSX.utils.aoa_to_sheet(data);
 
-    // Create a new workbook and append the worksheet to it
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1")
 
     XLSX.writeFile(workbook, "Quản lý lịch sử giao dịch.xlsx")
 }
 
-// Functional component to display the transaction history table
 const TableHistoryWallet: React.FC<TableHistoryWalletProps> = ({ listItem, currentPage, itemsPerPage }) => {
     const startIndex = currentPage * itemsPerPage
 
@@ -334,7 +325,7 @@ const AdminHome = () => {
                 </div>
             </div>
             <div className="grid lg:grid-cols-4 grid-cols-2 gap-5">
-                {/* <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
+                <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
                     <div className="flex xl:flex-row flex-col gap-5 py-3 px-5 items-center justify-around">
                         <div className="relative text-primary-blue-cus flex-shrink-0">
                             <IoWalletOutline size={60} />
@@ -356,7 +347,7 @@ const AdminHome = () => {
                             )}
                         </div>
                     </div>
-                </div> */}
+                </div>
                 <div className="col-span-1 border border-black border-opacity-50 rounded-lg flex items-center justify-center">
                     <div className="flex xl:flex-row flex-col gap-5 py-3 px-5 items-center justify-around">
                         <div className="relative text-primary-blue-cus flex-shrink-0">

@@ -48,7 +48,7 @@ export const verifyOTPService = async (data: sendMail) => {
 
 export const changePasswordService = async (data: FormData) => {
     try {
-        const response = await AxiosClient.put(`/api/users/${data.email}/new_pass`, { //put data về để chỉnh sửa password
+        const response = await AxiosClient.put(`/api/users/${data.email}/new_pass`, {
             newPassword: data.password,
             reEnterPassword: data.confirmPassword,
         });
