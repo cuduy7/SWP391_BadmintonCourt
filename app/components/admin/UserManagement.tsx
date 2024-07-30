@@ -19,6 +19,7 @@ interface TableUserProps {
 
 const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
+// Column titles for the user management table
 const listTitleUserManagement = [
     { title: "#" },
     { title: "ID" },
@@ -30,9 +31,12 @@ const listTitleUserManagement = [
     { title: "Lựa chọn" },
 ]
 
+// Function to export user data to an Excel file
 const exportToExcel = (listUser: ManageUserData[]) => {
+    // Extract headers from listTitleUserManagement, excluding the first and last columns
     const headers = listTitleUserManagement.slice(1, 7).map(item => item.title)
 
+    // Map user data to match the headers
     const data = listUser.map(user => [
         user.userId,
         user.fullName,
@@ -42,21 +46,37 @@ const exportToExcel = (listUser: ManageUserData[]) => {
         user.lastLogin,
     ])
 
+    // Add headers to the data
     data.unshift(headers)
 
-    const worksheet = XLSX.utils.aoa_to_sheet(data);
-
+    // Create a new worksheet and workbook
+    const worksheet = XLSX.utils.aoa_to_sheet(data)
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1")
 
+    // Write the workbook to a file
     XLSX.writeFile(workbook, "Quản lý người dùng.xlsx")
 }
 
+// Props interface for the TableUser component
+interface TableUserProps {
+    listUser: ManageUserData[]
+    currentPage: number
+    itemsPerPage: number
+}
+
+// Functional component for rendering a table of users
 const TableUser: React.FC<TableUserProps> = ({ listUser, currentPage, itemsPerPage }) => {
+    // State for managing the ID of the currently toggled item
     const [showToggleItemID, setShowToggleItemID] = useState<number | null>(null)
+    
+    // Hook for handling navigation
     const router = useRouter()
+    
+    // Calculate the starting index of the current page
     const startIndex = currentPage * itemsPerPage
 
+    // Function to handle toggling the display of action buttons for a specific item
     const handleToggle = (itemID: number) => {
         if (showToggleItemID === itemID) {
             setShowToggleItemID(null)
@@ -65,13 +85,18 @@ const TableUser: React.FC<TableUserProps> = ({ listUser, currentPage, itemsPerPa
         }
     }
 
+    // Function to handle clicking outside of the toggled item, closing the action buttons
     const handleOutsideClick = () => {
         setShowToggleItemID(null)
     }
 
+    // Reference for the div containing the action buttons
     const ref = useRef<HTMLDivElement | null>(null)
+
+    // Custom hook to detect clicks outside of the ref element
     useOutsideClick(ref, handleOutsideClick)
 
+    // Actions available for each user item
     const listAction = [
         { title: "Xem chi tiết tài khoản", src: (userId: string | null) => `/admin/user-detail-management/${userId}` },
         { title: "Xem trang cá nhân", src: (userId: string | null) => `/user/profile-user/${userId}` },
@@ -100,6 +125,7 @@ const TableUser: React.FC<TableUserProps> = ({ listUser, currentPage, itemsPerPa
             </thead>
             <tbody className="text-base font-medium">
                 {listUser.map((user, index) => {
+                    // Calculate the total index for the current user
                     const totalIndex = startIndex + index + 1
 
                     return (
@@ -142,6 +168,7 @@ const TableUser: React.FC<TableUserProps> = ({ listUser, currentPage, itemsPerPa
         </table>
     )
 }
+
 
 const UserManagement = () => {
     const [searchTerm, setSearchTerm] = useState<string>("")
