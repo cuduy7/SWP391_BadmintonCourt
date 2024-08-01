@@ -14,25 +14,17 @@ import ReactPaginate from "react-paginate"
 
 const fetcher = (url: string) => AxiosClient.get(url).then(res => res.data)
 
-// Interface defining the props for the TablePost component
 interface TablePostProps {
     listItem: UserManagePostData[]
 }
 
-// Functional component for rendering a table of posts
 const TablePost: React.FC<TablePostProps> = ({
     listItem
 }) => {
-    // State for managing the ID of the currently toggled item
     const [showToggleItemID, setShowToggleItemID] = useState<number | null>(null)
-
-    // Custom hook for managing the delete post modal
     const adminDeletePostModal = useAdminDeletePostModal()
-
-    // Hook for handling navigation
     const router = useRouter()
 
-    // Function to handle toggling the display of action buttons for a specific item
     const handleToggle = (itemID: number) => {
         if (showToggleItemID === itemID) {
             setShowToggleItemID(null)
@@ -41,18 +33,12 @@ const TablePost: React.FC<TablePostProps> = ({
         }
     }
 
-    // Function to handle clicking outside of the toggled item, closing the action buttons
     const handleOutsideClick = () => {
         setShowToggleItemID(null)
     }
-
-    // Reference for the div containing the action buttons
     const ref = useRef<HTMLDivElement | null>(null)
-
-    // Custom hook to detect clicks outside of the ref element
     useOutsideClick(ref, handleOutsideClick)
 
-    // Column titles for the table header
     const listTitleUserDetail = [
         { title: "ID" },
         { title: "Tên bài viết" },
@@ -60,7 +46,6 @@ const TablePost: React.FC<TablePostProps> = ({
         { title: "Thao tác" }
     ]
 
-    // Actions available for each post item
     const listAction = [
         { title: "Xem bài viết", src: (postId: string) => router.push(`/product/detail-product/${postId}`) },
         { title: "Xoá bài viết", src: (postId: string) => { adminDeletePostModal.onOpen(postId, null) } },
@@ -107,7 +92,6 @@ const TablePost: React.FC<TablePostProps> = ({
         </table>
     )
 }
-
 
 const UserDetailManage = () => {
     const router = useRouter()

@@ -13,41 +13,38 @@ import { formatMoney } from "@/utils"
 import Decimal from "decimal.js"
 
 const ModalBoostProduct = () => {
-    const boostProductModal = useBoostProductModal() // State and methods for the modal
-    const { user, setIsLoadingModal, isLoadingModal, listSetting } = useContext(GlobalContext) || {} // Global context values
-    const post_id = boostProductModal.postId // ID of the post to be boosted
+    const boostProductModal = useBoostProductModal()
+    const { user, setIsLoadingModal, isLoadingModal, listSetting } = useContext(GlobalContext) || {}
+    const post_id = boostProductModal.postId
 
-    // Find the boost post setting in the list of settings
     const boostPostSetting = listSetting && listSetting.find(setting => setting.settingName === SettingNames.BoostPostFree)
 
-    // Handle boosting the post
     const handleDeletePost = async () => {
-        if (setIsLoadingModal) setIsLoadingModal(true) // Show loading indicator
+        if (setIsLoadingModal) setIsLoadingModal(true)
 
         if (user && user.id && post_id) {
-            const res = await boostProductService(user.id, post_id) // Call the service to boost the post
+            const res = await boostProductService(user.id, post_id)
 
             if (res.data == null) {
                 toast.error(res.message, {
                     position: toast.POSITION.TOP_RIGHT
-                }) // Show error message
-                boostProductModal.onClose() // Close the modal
-                if (setIsLoadingModal) setIsLoadingModal(false) // Hide loading indicator
+                })
+                boostProductModal.onClose()
+                if (setIsLoadingModal) setIsLoadingModal(false)
                 return
             }
 
             toast.success("Đẩy bài đăng thành công", {
                 position: toast.POSITION.TOP_RIGHT
-            }) // Show success message
+            })
 
-            mutate("/posts/GetListPost") // Refresh the post list
-            boostProductModal.onClose() // Close the modal
+            mutate("/posts/GetListPost")
+            boostProductModal.onClose()
         }
 
-        if (setIsLoadingModal) setIsLoadingModal(false) // Hide loading indicator
+        if (setIsLoadingModal) setIsLoadingModal(false)
     }
 
-    // Show loading indicator if the modal is in a loading state
     if (isLoadingModal) {
         return <LoadingActionWallet loading={isLoadingModal} />
     }
@@ -61,9 +58,7 @@ const ModalBoostProduct = () => {
         >
             <form className="flex flex-col md:px-10 pb-5 gap-3 justify-center items-center">
                 <label className="text-gray-600 font-semibold text-3xl">Bạn có chắc chắn muốn đẩy bài đăng này không?</label>
-                <p className="text-gray-500 font-normal text-base px-5">
-                    Phí đẩy bài {formatMoney(new Decimal(boostPostSetting ? boostPostSetting.settingAmount : 0))}
-                </p>
+                <p className="text-gray-500 font-normal text-base px-5">Phí đẩy bài {formatMoney(new Decimal(boostPostSetting ? boostPostSetting.settingAmount : 0))}</p>
                 <div className="flex flex-row gap-5 pt-5">
                     <Button
                         title="Không"
