@@ -18,8 +18,8 @@ export const navLinks = [
     },
     {
         id: "5",
-        label: "Các điều khoản",
-        href: "/policy"
+        label: "Ví tiền",
+        href: "/user/wallet"
     },
 ]
 

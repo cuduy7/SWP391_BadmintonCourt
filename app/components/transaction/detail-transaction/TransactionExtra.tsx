@@ -60,7 +60,7 @@ const TransactionExtra: React.FC<TransactionPaymentDetailData> = ({
                 </div>
             </div> */}
             <div className="relative flex justify-center">
-                {isCancel ? (
+                {isCancel && (
                     <Button
                         title="Hủy chỗ đặt"
                         style="py-3 text-lg"
@@ -69,14 +69,6 @@ const TransactionExtra: React.FC<TransactionPaymentDetailData> = ({
                                 deleteTransactionModal.onOpen(id)
                         }}
                     />
-                ) : (
-                    (tranStatus === 0 || tranStatus === 1) && (
-                        <Button
-                            title="Thanh toán ngay"
-                            style="py-3 text-lg"
-                            onClick={transactionModal.onOpen}
-                        />
-                    )
                 )}
             </div>
         </div>

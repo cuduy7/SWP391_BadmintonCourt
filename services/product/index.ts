@@ -157,12 +157,16 @@ export const UpdateService = async (data: UpdateForm) => {
 
 export const UpdateStatusService = async (data: UpdateStatusForm) => {
     try {
+        console.log(data);
+        
         const response = await AxiosClient.put(`/api/transactions/status_info`, {
             idPost: data.idPost,
             idUser: data.idUser,
             postSlot: data.postSlot,
         })
 
+        console.log(response);
+        
         return response.data;
     } catch (error: any) {
         if (error && error.response) {

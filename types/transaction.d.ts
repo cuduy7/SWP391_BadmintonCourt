@@ -63,6 +63,7 @@ export interface TransactionPaymentDetailData {
             dateSlot: string
             slot: string[]
             pricePerSlot: number
+            status: string
         }[];
     }
 }
